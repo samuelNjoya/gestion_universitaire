@@ -41,4 +41,14 @@ class SubjectModel extends Model
         return $return;
     }
 
+    static public function getRecordActive($user_id){
+        $return = self::select('*')
+                 ->where('status', '=', 1)
+                 ->where('created_by_id', '=', $user_id)// cette fonction pour que l'admin puisse voire les teachers
+                 ->where('is_delete', '=', 0)// pour supprimer et conservé
+                ->orderBy('id', 'desc')
+                ->get();   
+        return $return;
+    }
+
 }

@@ -53,6 +53,7 @@ Route::group(['middleware' => 'admin'], function(){
 
 Route::group(['middleware' => 'school'], function(){
 
+    Route::get('panel/dashboard',[DashboardController::class, 'dashboard']);
 
     //Teacher
     Route::get('panel/teacher',[TeacherController::class, 'teacher_list']);
@@ -94,6 +95,19 @@ Route::group(['middleware' => 'school'], function(){
      Route::get('panel/subject/edit/{id}',[SubjectController::class, 'subject_edit']);
      Route::post('panel/subject/edit/{id}',[SubjectController::class, 'subject_update']);
      Route::get('panel/subject/delete/{id}',[SubjectController::class, 'subject_delete']);
+
+     //assign-subject
+     Route::get('panel/assign_subject',[SubjectController::class, 'assign_subject_list']);
+     Route::get('panel/assign_subject/create',[SubjectController::class, 'assign_subject_create']);
+     Route::post('panel/assign_subject/create',[SubjectController::class, 'assign_subject_insert']);
+     Route::get('panel/assign_subject/edit/{id}',[SubjectController::class, 'assign_subject_edit']);
+     Route::post('panel/assign_subject/edit/{id}',[SubjectController::class, 'assigns_ubject_update']);
+     Route::get('panel/assign_subject/delete/{id}',[SubjectController::class, 'assign_subject_delete']);
+     
+     //class Timetable 
+     Route::get('panel/class_timetable',[SubjectController::class, 'class_timetable']);
+     Route::post('panel/class_timetable',[SubjectController::class, 'submit_class_timetable']);//pour enregistrer les heures et salles de cours
+     Route::post('panel/get_assign_subject_class',[SubjectController::class, 'get_assign_subject_class']);
 });
 
 Route::group(['middleware' => 'teacher'], function(){

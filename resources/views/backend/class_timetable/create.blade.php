@@ -5,12 +5,12 @@
     
     <!-- START BREADCRUMB -->
     <ul class="breadcrumb">
-        <li><a href="#">Edit</a></li>                    
-        <li class="active">Subject</li>
+        <li><a href="#">List</a></li>                    
+        <li class="active">Assign Subject  class</li>
     </ul>
     <!-- END BREADCRUMB -->    
     <div class="page-title">
-        <h2><span class="fa fa-arrow-circle-o-left"></span>Edit Subject</h2>
+        <h2><span class="fa fa-arrow-circle-o-left"></span>Create Assign Subject  class</h2>
     </div>                   
     
     <!-- PAGE CONTENT WRAPPER -->
@@ -22,7 +22,7 @@
                     @csrf
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title"><strong>Edit</strong> Subject</h3>
+                        <h3 class="panel-title"><strong>Create</strong> Assign Subject  class</h3>
                         <ul class="panel-controls">
                             <li><a href="#" class="panel-remove"><span class="fa fa-times"></span></a></li>
                         </ul>
@@ -33,35 +33,53 @@
                         <div class="row">
                             
                             <div class="col-md-6">
+                                @if (Auth::user()->is_admin == 1 || Auth::user()->is_admin == 2)
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">School name</label>
+                                        <div class="col-md-9">                                                                                                                                        
+                                            <select name="school_id" id="" class="form-control">
+                                                <option value="">select</option>
+                                                @foreach ($getSchool as $item)
+                                                <option value="{{$item->id}}">{{$item->name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                @endif
                                 
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label">Subject Name</label>
+                                    <label class="col-md-3 control-label">Class</label>
                                     <div class="col-md-9">                                            
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><span class="fa fa-user"></span></span>
-                                            <input type="text" name="name" value="{{ old('name',$getRecord->name) }}" class="form-control"/>
-                                        </div> 
-                                        <div class="required">{{ $errors->first('name') }}</div>                                           
+                                        
+                                        <select name="class_id" id="" class="form-control">
+                                            <option value="">select class</option>
+                                            @foreach ($getClass as $class)
+                                              <option value="{{ $class->id }}">{{ $class->name }}</option>
+                                            @endforeach
+                                        </select>
+                                                                                
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label">Type</label>
-                                    <div class="col-md-9">                                                                                                                                        
-                                        <select name="type" id="" class="form-control">
-                                            <option value="">select</option>
-                                            <option {{ ($getRecord->status == 'Theory') ? 'selected' : '' }} value="Theory">Theory</option>
-                                            <option {{ ($getRecord->status == 'Pratical') ? 'selected' : '' }} value="Pratical">Pratical</option>
-                                        </select>
+                                    <label class="col-md-3 control-label">Subject</label>
+                                    <div class="col-md-9">                                            
+  
+                                            @foreach ($getSubject as $subject)
+                                              <label style="display: block;margin-bottom:7px;" for=""><input value="{{ $subject->id }}" name="subject_id[]" type="checkbox">{{ $subject->name }}</label>
+                                            @endforeach
+                                  
                                     </div>
                                 </div>
-                               
+
+                             
+                                
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">status</label>
                                     <div class="col-md-9">                                                                                                                                        
                                         <select name="status" id="" class="form-control">
-                                            <option {{ ($getRecord->status == 1) ? 'selected' : '' }} value="1">active</option>
-                                            <option {{ ($getRecord->status == 0) ? 'selected' : '' }} value="0">inactive</option>
+                                            <option value="1">active</option>
+                                            <option value="0">inactive</option>
                                         </select>
                                     </div>
                                 </div>
