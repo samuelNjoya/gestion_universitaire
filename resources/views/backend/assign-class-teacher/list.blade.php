@@ -6,11 +6,11 @@
     <!-- START BREADCRUMB -->
     <ul class="breadcrumb">
         <li><a href="#">List</a></li>                    
-        <li class="active">Assign Subject  Class</li>
+        <li class="active">Assign Class Teacher</li>
     </ul>
     <!-- END BREADCRUMB -->    
     <div class="page-title">
-        <h2><span class="fa fa-arrow-circle-o-left"></span>Assign Subject  Class</h2>
+        <h2><span class="fa fa-arrow-circle-o-left"></span>Assign Class Teacher</h2>
     </div>                   
     
     <!-- PAGE CONTENT WRAPPER -->
@@ -23,7 +23,7 @@
 
                  <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Assign Subject  Class Search</h3>
+                        <h3 class="panel-title">Assign Class Teacher Search</h3>
                     </div>
                     <div class="panel-body">
                         <form action="" method="get">
@@ -37,8 +37,12 @@
                             </div>
                       
                             <div class="col-md-2">
-                                <label for="">Subject Name</label>
-                                <input type="text" class="form-control" value="{{ Request::get('subject_name') }}" placeholder="Subject Name" name="subject_name">
+                                <label for="">Teacher Name</label>
+                                <input type="text" class="form-control" value="{{ Request::get('teacher_name') }}" placeholder="Teacher Name" name="teacher_name">
+                            </div>
+                            <div class="col-md-2">
+                                <label for="">Teacher Last Name</label>
+                                <input type="text" class="form-control" value="{{ Request::get('teacher_lastname') }}" placeholder="Teacher Last Name" name="teacher_lastname">
                             </div>
 
                             <div class="col-md-2">
@@ -53,7 +57,7 @@
                             <br>
                             <div class="col-md-12">
                             <button type="submit" class="btn btn-primary">Search</button>
-                            <a href="{{url('panel/assign_subject')}}" class="btn btn-success">Reset</a>
+                            <a href="{{url('panel/assign_class_teacher')}}" class="btn btn-success">Reset</a>
                             </div>
                         </form>
                     </div>
@@ -62,8 +66,8 @@
                 <div class="panel panel-default">
 
                     <div class="panel-heading">
-                        <h3 class="panel-title">Assign Subject  Class list</h3>
-                        <a href="{{url('panel/assign_subject/create')}}" class="btn btn-primary pull-right">Create Assign Subject  Class</a>
+                        <h3 class="panel-title">Assign Class Teacher list</h3>
+                        <a href="{{url('panel/assign_class_teacher/create')}}" class="btn btn-primary pull-right">Create Assign Class Teacher</a>
                     </div>
 
                     <div class="panel-body panel-body-table">
@@ -73,11 +77,9 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        {{-- @if (Auth::user()->is_admin == 1 || Auth::user()->is_admin == 2)
-                                         <th>School Name</th>
-                                        @endif --}}
                                         <th>Class Name</th>
-                                        <th>Subject Name</th>
+                                        <th>Teacher Name</th>
+                                        <th>Teacher Last Name</th>
                                         <th>Status</th>
                                         <th>Created Date</th>
                                         <th>Action</th>
@@ -89,15 +91,9 @@
                                     @forelse ($getRecord as $item)                                 
                                         <tr >
                                             <td >{{$item->id}}</td>
-                                            {{-- @if (Auth::user()->is_admin == 1 || Auth::user()->is_admin == 2)
-                                            <td>
-                                                @if (!empty($item->getCreatedBy))
-                                                    {{ $item->getCreatedBy->name }}
-                                                @endif
-                                            </td>
-                                            @endif --}}
                                             <td >{{$item->class_name}}</td>
-                                            <td >{{$item->subject_name}}</td>
+                                            <td >{{$item->teacher_name}}</td>
+                                            <td >{{$item->teacher_lastname}}</td>
                                             <td >
                                                 @if ($item->status == 1)
                                                     <span class="label label-success">Active</span>
@@ -107,8 +103,8 @@
                                             </td>
                                             <td >{{ date('d-m-y H:i A', strtotime($item->created_at)) }}</td>
                                             <td>
-                                                <a href="{{ url('panel/assign_subject/edit', $item->id) }}" class="btn btn-default btn-rounded btn-sm"><span class="fa fa-pencil"></span></a>
-                                                <a href="{{ url('panel/assign_subject/delete', $item->id) }}" onclick="return confirm('Are you sure do you want to delete ?');" class="btn btn-danger btn-rounded btn-sm" ><span class="fa fa-times"></span></a>
+                                                <a href="{{ url('panel/assign_class_teacher/edit', $item->id) }}" class="btn btn-default btn-rounded btn-sm"><span class="fa fa-pencil"></span></a>
+                                                <a href="{{ url('panel/assign_class_teacher/delete', $item->id) }}" onclick="return confirm('Are you sure do you want to delete ?');" class="btn btn-danger btn-rounded btn-sm" ><span class="fa fa-times"></span></a>
                                             </td>
                                         </tr> 
                                     @empty
@@ -129,10 +125,6 @@
             {{-- <span class="pull-right"> {{$getRecord->appends(Illuminate\Support\Facades\Request::except('page'))->links()}}</span> --}}
          </div>                                
         </div>
-        {{-- @else
-        <h2>the School list database is empty</h2>  
-       @endif     --}}
-        <!-- END RESPONSIVE TABLES -->
                                  
     </div> 
     <!-- END PAGE CONTENT WRAPPER -->      

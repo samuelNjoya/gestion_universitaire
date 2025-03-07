@@ -108,6 +108,14 @@ Route::group(['middleware' => 'school'], function(){
      Route::get('panel/class_timetable',[SubjectController::class, 'class_timetable']);
      Route::post('panel/class_timetable',[SubjectController::class, 'submit_class_timetable']);//pour enregistrer les heures et salles de cours
      Route::post('panel/get_assign_subject_class',[SubjectController::class, 'get_assign_subject_class']);
+
+      //assign-class-teacher  dans ClassController
+      Route::get('panel/assign_class_teacher',[ClassController::class, 'assign_class_teacher_list']);
+      Route::get('panel/assign_class_teacher/create',[ClassController::class, 'assign_class_teacher_create']);
+      Route::post('panel/assign_class_teacher/create',[ClassController::class, 'assign_class_teacher_insert']);
+      Route::get('panel/assign_class_teacher/edit/{id}',[ClassController::class, 'assign_class_teacher_edit']);
+      Route::post('panel/assign_class_teacher/edit/{id}',[ClassController::class, 'assign_class_teacher_update']);
+      Route::get('panel/assign_class_teacher/delete/{id}',[ClassController::class, 'assign_class_teacher_delete']);
 });
 
 Route::group(['middleware' => 'teacher'], function(){

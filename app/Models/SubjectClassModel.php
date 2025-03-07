@@ -78,7 +78,7 @@ class SubjectClassModel extends Model
              $return = $return->where('subject_class.created_by_id', '=', $user_id);// cette fonction pour que l'admin puisse voire les teachers
 
         $return = $return->where('subject_class.is_delete', '=', 0)
-                ->orderBy('id', 'desc')
+                ->orderBy('subject_class.id', 'desc') //subject_class.id si problème mettre id
                 ->paginate(10);   
         return $return;
     }

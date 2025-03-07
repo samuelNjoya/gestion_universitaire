@@ -72,10 +72,10 @@
                                                 @foreach ($getSelectedSubject as $sbu)
                                                     @if ($sbu->subject_id == $subject->id)
                                                         @php
-                                                           $checked = "checked";
+                                                           $checked = "checked";  // mettre {{ $checked }} dans input en bas
                                                         @endphp
                                                     @endif
-                                                @endforeach
+                                                @endforeach    
                                               <label style="display: block;margin-bottom:7px;" for=""><input {{ $checked }}  value="{{ $subject->id }}" name="subject_id[]" type="checkbox">{{ $subject->name }}</label>
                                             @endforeach
                                   
