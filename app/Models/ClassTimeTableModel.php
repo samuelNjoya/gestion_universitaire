@@ -27,6 +27,19 @@ class ClassTimeTableModel extends Model
                               ->where('week_id', '=', $week_id)
                               ->first();  
     }
+   
+
+    // pour teacher
+    static public function getRecordWeekName($class_id, $subject_id, $week_name)
+    {
+       return ClassTimeTableModel::join('week','week.id', '=', 'class_timetable.week_id')
+                               ->where('class_timetable.class_id', '=', $class_id)
+                              ->where('class_timetable.subject_id', '=', $subject_id)
+                              ->where('week.name', '=', $week_name)
+                              ->first();  
+    }
+
+    
     
 
 }

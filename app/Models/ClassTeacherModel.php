@@ -25,6 +25,16 @@ class ClassTeacherModel extends Model
 
     }
 
+      //pour eviter la duplication des filieres et prof modification personalisée
+   static public function checkClassTeacherSingle($created_by_id, $class_id, $teacher_id)
+   {
+       return ClassTeacherModel::where('created_by_id', '=', $created_by_id)
+                              ->where('class_id', '=', $class_id)
+                              ->where('teacher_id', '=', $teacher_id)
+                              ->where('is_delete', '=', 0)
+                              ->first();
+   }
+
     //pour eviter la duplication des class lors de la modification en supprimant des anciennes données
     // important dans timeTable jQry pour rendre dynamique les matières en fonction des classes
     static public function getSelectedTeacher($class_id, $created_by_id)
@@ -43,6 +53,38 @@ class ClassTeacherModel extends Model
                                ->where('class_id', '=', $class_id)
                                ->delete();
                                
+    }
+   
+    //page personnel de teacher my Class and Subject
+    static public function getRecordTeacher($teacher_id)
+    {
+        // pour filtrer
+            $return = self::select('class_teacher.*','class.name as class_name','subject.name as subject_name','subject.type as subject_type'
+                          , 'subject_class.subject_id') //
+                             ->join('class','class.id', '=', 'class_teacher.class_id')
+                            ->join('subject_class','subject_class.class_id', '=', 'class_teacher.class_id')
+                            ->join('subject','subject.id', '=', 'subject_class.subject_id');
+
+                            //filter
+                            if(!empty(Request::get('class_name')))
+                            {
+                                 $return = $return->where('class.name', 'like', '%' .Request::get('class_name').'%');
+                            }
+                
+                            if(!empty(Request::get('subject_name')))
+                            {
+                                 $return = $return->where('subject.name', 'like', '%' .Request::get('subject_name').'%');
+                            }
+
+            $return = $return->where('class_teacher.teacher_id', '=', $teacher_id)
+                             ->where('class_teacher.is_delete', '=', 0)
+                             ->where('class_teacher.status', '=', 1)
+                             ->where('subject_class.is_delete', '=', 0)    // important
+                             ->where('subject_class.status', '=', 1)     //important
+                             ->orderBy('class_teacher.id', 'desc')
+                             ->paginate(10);  
+
+           return $return;
     }
 
     static public function getRecord($user_id, $user_type)

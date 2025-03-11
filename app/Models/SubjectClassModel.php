@@ -26,6 +26,17 @@ class SubjectClassModel extends Model
 
     }
 
+    //pour la fonction single
+    static public function checkClassSubjectSingle($created_by_id, $class_id, $subject_id)
+    {
+        return SubjectClassModel::where('created_by_id', '=', $created_by_id)
+                               ->where('class_id', '=', $class_id)
+                               ->where('subject_id', '=', $subject_id)
+                               ->where('is_delete', '=', 0)
+                               ->first(); // premier enregistrement qui correspond aux critères
+
+    }
+
     //pour eviter la duplication des class lors de la modification en supprimant des anciennes données
     // important dans timeTable jQry pour rendre dynamique les matières en fonction des classes
     static public function getSelectedSubject($class_id, $created_by_id)

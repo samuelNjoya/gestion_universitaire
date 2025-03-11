@@ -10,6 +10,7 @@ use App\Http\Controllers\backend\ClassController;
 use App\Http\Controllers\backend\SubjectController;
 use App\Http\Controllers\backend\StudentController;
 use App\Http\Controllers\backend\UserController;
+use App\Models\ClassModel;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
@@ -103,6 +104,9 @@ Route::group(['middleware' => 'school'], function(){
      Route::get('panel/assign_subject/edit/{id}',[SubjectController::class, 'assign_subject_edit']);
      Route::post('panel/assign_subject/edit/{id}',[SubjectController::class, 'assigns_ubject_update']);
      Route::get('panel/assign_subject/delete/{id}',[SubjectController::class, 'assign_subject_delete']);
+     //edit single assign Subject
+     Route::get('panel/assign_subject/edit_single/{id}',[SubjectController::class, 'assign_subject_single_edit']);
+     Route::post('panel/assign_subject/edit_single/{id}',[SubjectController::class, 'assigns_ubject_single_update']);
      
      //class Timetable 
      Route::get('panel/class_timetable',[SubjectController::class, 'class_timetable']);
@@ -116,10 +120,15 @@ Route::group(['middleware' => 'school'], function(){
       Route::get('panel/assign_class_teacher/edit/{id}',[ClassController::class, 'assign_class_teacher_edit']);
       Route::post('panel/assign_class_teacher/edit/{id}',[ClassController::class, 'assign_class_teacher_update']);
       Route::get('panel/assign_class_teacher/delete/{id}',[ClassController::class, 'assign_class_teacher_delete']);
+      //edit single assign class
+      Route::get('panel/assign_class_teacher/edit_single/{id}',[ClassController::class, 'assign_class_teacher_single_edit']);
+      Route::post('panel/assign_class_teacher/edit_single/{id}',[ClassController::class, 'assign_class_teacher_single_update']);
 });
 
 Route::group(['middleware' => 'teacher'], function(){
     Route::get('teacher/dashboard',[DashboardController::class, 'dashboard']);
+    Route::get('teacher/my_class_subject',[ClassController::class, 'my_class_subject']);
+    Route::get('teacher/my_class_subject/timetable/{class_id}/{subject_id}',[ClassController::class, 'teacher_timetable']);
 });
 
 Route::group(['middleware' => 'student'], function(){

@@ -73,9 +73,6 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        {{-- @if (Auth::user()->is_admin == 1 || Auth::user()->is_admin == 2)
-                                         <th>School Name</th>
-                                        @endif --}}
                                         <th>Class Name</th>
                                         <th>Subject Name</th>
                                         <th>Status</th>
@@ -89,13 +86,6 @@
                                     @forelse ($getRecord as $item)                                 
                                         <tr >
                                             <td >{{$item->id}}</td>
-                                            {{-- @if (Auth::user()->is_admin == 1 || Auth::user()->is_admin == 2)
-                                            <td>
-                                                @if (!empty($item->getCreatedBy))
-                                                    {{ $item->getCreatedBy->name }}
-                                                @endif
-                                            </td>
-                                            @endif --}}
                                             <td >{{$item->class_name}}</td>
                                             <td >{{$item->subject_name}}</td>
                                             <td >
@@ -107,8 +97,9 @@
                                             </td>
                                             <td >{{ date('d-m-y H:i A', strtotime($item->created_at)) }}</td>
                                             <td>
-                                                <a href="{{ url('panel/assign_subject/edit', $item->id) }}" class="btn btn-default btn-rounded btn-sm"><span class="fa fa-pencil"></span></a>
-                                                <a href="{{ url('panel/assign_subject/delete', $item->id) }}" onclick="return confirm('Are you sure do you want to delete ?');" class="btn btn-danger btn-rounded btn-sm" ><span class="fa fa-times"></span></a>
+                                                <a href="{{ url('panel/assign_subject/edit', $item->id) }}" class="btn btn-default  btn-sm"><span class="fa fa-pencil"></span></a>
+                                                <a href="{{ url('panel/assign_subject/edit_single', $item->id) }}" class="btn btn-primary  btn-sm">Edit single</a>
+                                                <a href="{{ url('panel/assign_subject/delete', $item->id) }}" onclick="return confirm('Are you sure do you want to delete ?');" class="btn btn-danger  btn-sm" ><span class="fa fa-times"></span></a>
                                             </td>
                                         </tr> 
                                     @empty

@@ -6,11 +6,11 @@
     <!-- START BREADCRUMB -->
     <ul class="breadcrumb">
         <li><a href="#">List</a></li>                    
-        <li class="active">Password</li>
+        <li class="active">Profil</li>
     </ul>
     <!-- END BREADCRUMB -->    
     <div class="page-title">
-        <h2><span class="fa fa-arrow-circle-o-left"></span>Change Password</h2>
+        <h2><span class="fa fa-arrow-circle-o-left"></span>Change Profil</h2>
     </div>                   
     
     <!-- PAGE CONTENT WRAPPER -->
@@ -24,7 +24,7 @@
                     @csrf
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title"><strong>Change</strong> Password</h3>
+                        <h3 class="panel-title"><strong>Change</strong>Profil</h3>
                         <ul class="panel-controls">
                             <li><a href="#" class="panel-remove"><span class="fa fa-times"></span></a></li>
                         </ul>

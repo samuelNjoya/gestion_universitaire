@@ -114,6 +114,44 @@ class SubjectController extends Controller
        }
        return redirect('panel/assign_subject')->with('success','Assign subject class successifuly created');
     }
+     
+    // Assign subject Edit single
+    public function assign_subject_single_edit($id)
+    {
+       
+        $data['getRecord'] =  SubjectClassModel::getSingle($id);
+        $data['getClass'] = ClassModel::getRecordActive(Auth::user()->id);
+        $data['getSubject'] = SubjectModel::getRecordActive(Auth::user()->id);
+        $data['meta_title'] = "Edit Assign subject single";
+        return view('backend.assign-subject.edit_single', $data);
+    }
+
+    public function assigns_ubject_single_update(Request $request)
+    {
+       // pour eviter la duplication des class et matiere single
+       $check = SubjectClassModel::checkClassSubjectSingle(Auth::user()->id, $request->class_id, $request->subject_id);
+
+       if(empty($check)) // s'il y'a pas duplication on insère
+       {
+             $save                = new SubjectClassModel;
+             $save->class_id      = trim($request->class_id);
+             $save->subject_id    = trim($request->subject_id);
+             $save->status        = trim($request->status);
+             $save->created_by_id = Auth::user()->id;
+             $save->save();
+       }
+       else
+       {
+                $check->class_id      = trim($request->class_id);
+                $check->subject_id    = trim($request->subject_id);
+                $check->status        = trim($request->status);
+                $check->save();
+       }
+
+       return redirect('panel/assign_subject')->with('success','Assign subject class successifuly updated');
+
+    }
+
 
     public function assign_subject_edit($id)
     {

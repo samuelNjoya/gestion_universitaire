@@ -25,10 +25,17 @@
             <li class="{{ (Request::segment(2) == 'dashboard') ? 'active' : '' }}">
                 <a href="{{url('panel/dashboard')}}"><span class="fa fa-desktop"></span> <span class="xn-text">Dashboard</span></a>                        
             </li>
+
+            {{-- uniquement les professeurs --}}
         @elseif(Auth::user()->is_admin == 5)
             <li class="{{ (Request::segment(2) == 'dashboard') ? 'active' : '' }}">
                 <a href="{{url('teacher/dashboard')}}"><span class="fa fa-desktop"></span> <span class="xn-text">Dashboard</span></a>                        
             </li>
+            <li class="{{ (Request::segment(2) == 'dashboard') ? 'active' : '' }}">
+                <a href="{{url('teacher/my_class_subject')}}"><span class="fa fa-user"></span> <span class="xn-text">My Class and subject</span></a>                        
+            </li>
+
+             {{-- uniquement les etudiants --}}
         @elseif(Auth::user()->is_admin == 6)
             <li class="{{ (Request::segment(2) == 'dashboard') ? 'active' : '' }}">
                 <a href="{{url('student/dashboard')}}"><span class="fa fa-desktop"></span> <span class="xn-text">Dashboard</span></a>                        

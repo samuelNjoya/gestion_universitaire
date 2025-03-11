@@ -103,13 +103,14 @@
                                             </td>
                                             <td >{{ date('d-m-y H:i A', strtotime($item->created_at)) }}</td>
                                             <td>
-                                                <a href="{{ url('panel/assign_class_teacher/edit', $item->id) }}" class="btn btn-default btn-rounded btn-sm"><span class="fa fa-pencil"></span></a>
-                                                <a href="{{ url('panel/assign_class_teacher/delete', $item->id) }}" onclick="return confirm('Are you sure do you want to delete ?');" class="btn btn-danger btn-rounded btn-sm" ><span class="fa fa-times"></span></a>
+                                                <a href="{{ url('panel/assign_class_teacher/edit', $item->id) }}" class="btn btn-default  btn-sm"><span class="fa fa-pencil"></span></a>
+                                                <a href="{{ url('panel/assign_class_teacher/edit_single', $item->id) }}" class="btn btn-primary btn-sm">Edit single</a>
+                                                <a href="{{ url('panel/assign_class_teacher/delete', $item->id) }}" onclick="return confirm('Are you sure do you want to delete ?');" class="btn btn-danger  btn-sm" ><span class="fa fa-times"></span></a>
                                             </td>
                                         </tr> 
                                     @empty
                                           <tr>
-                                              <td colspan="100%">Record not found</td>
+                                              <td colspan="100%">Record not found</td> 
                                           </tr>
                                     @endforelse
                                    
