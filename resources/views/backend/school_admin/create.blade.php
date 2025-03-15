@@ -38,7 +38,7 @@
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">School name</label>
                                     <div class="col-md-9">                                                                                                                                        
-                                        <select name="school_id" id="" class="form-control">
+                                        <select name="school_id" id="" class="form-control" required>
                                             <option value="">select</option>
                                             @foreach ($getSchool as $item)
                                             <option value="{{$item->id}}">{{$item->name}}</option>

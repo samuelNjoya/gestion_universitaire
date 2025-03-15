@@ -30,7 +30,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-md-6">
-                            <a href="{{url('login')}}" class="btn btn-link btn-block">Log In</a>
+                            <a href="{{url('')}}" class="btn btn-link btn-block">Log In</a>
                         </div>
                         <div class="col-md-6">
                             <button class="btn btn-info btn-block">Forgot</button>

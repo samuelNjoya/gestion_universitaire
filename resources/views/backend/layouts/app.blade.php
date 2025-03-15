@@ -12,7 +12,8 @@
         
         <!-- CSS INCLUDE -->        
         <link rel="stylesheet" type="text/css" id="theme" href="{{asset('css/theme-default.css')}}"/>
-        <!-- EOF CSS INCLUDE -->                                    
+        <!-- EOF CSS INCLUDE -->          
+        @stack('styles')                            
     </head>
     <body>
         <!-- START PAGE CONTAINER -->

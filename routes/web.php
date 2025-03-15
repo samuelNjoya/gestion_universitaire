@@ -10,10 +10,11 @@ use App\Http\Controllers\backend\ClassController;
 use App\Http\Controllers\backend\SubjectController;
 use App\Http\Controllers\backend\StudentController;
 use App\Http\Controllers\backend\UserController;
+use App\Http\Controllers\PDFController;
 use App\Models\ClassModel;
 use Illuminate\Support\Facades\Route;
 
-// Route::get('/', function () {
+// Route::get('/', function () {  school Middleware important
 //     return view('auth.login');
 // });//php artisan route:cache
 
@@ -28,11 +29,16 @@ Route::group(['middleware' => 'common'], function(){
      
      Route::get('panel/my-account',[UserController::class, 'my_account']);
      Route::post('panel/my-account',[UserController::class, 'update_account']);
+
+     //statistique
+    Route::get('test',[DashboardController::class, 'statistiqueAdmin']);
 });
 
 Route::group(['middleware' => 'admin'], function(){
 
     Route::get('panel/dashboard',[DashboardController::class, 'dashboard']);
+
+    
 
    //Admin
    Route::get('panel/admin',[AdminController::class, 'admin_list']);
@@ -134,3 +140,7 @@ Route::group(['middleware' => 'teacher'], function(){
 Route::group(['middleware' => 'student'], function(){
     Route::get('student/dashboard',[DashboardController::class, 'dashboard']);
 });
+
+//Pdf
+    Route::get('panel/teacher/users_pdf',[PDFController::class, 'users_pdf']);
+    Route::get('panel/teacher/users_excel',[PDFController::class, 'users_excel']);

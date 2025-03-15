@@ -51,4 +51,20 @@ class SubjectModel extends Model
         return $return;
     }
 
+    // le nombre de matière
+    static public function numberOfSubject()
+    {
+        return self::select('*')->where('is_delete','=',0)->count();
+    }
+
+    // le nombre de matière Pratique theorique
+    static public function numberOfSubjectPratical()
+    {
+        return self::select('*')->where('is_delete','=',0)->where('type','=','Pratical')->count();
+    }
+
+    static public function numberOfSubjectTheory()
+    {
+        return self::select('*')->where('is_delete','=',0)->where('type','=','Theory')->count();
+    }
 }

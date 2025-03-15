@@ -106,7 +106,7 @@
                                     <div class="col-md-9">                                            
                                         <div class="input-group">
                                             <span class="input-group-addon"><span class="fa fa-user"></span></span>
-                                            <input type="text" name="marital_status" value="{{ old('marital_status',$getRecord->status) }}" class="form-control"/>
+                                            <input type="text" name="marital_status" value="{{ old('marital_status',$getRecord->marital_status) }}" class="form-control"/>
                                         </div>  
                                         <div class="required">{{ $errors->first('marital_status') }}</div>                                          
                                     </div>

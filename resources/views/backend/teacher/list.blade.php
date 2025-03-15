@@ -76,7 +76,10 @@
 
                     <div class="panel-heading">
                         <h3 class="panel-title">Teacher list</h3>
+                        
                         <a href="{{url('panel/teacher/create')}}" class="btn btn-primary pull-right">Create Teacher</a>
+                        <a href="{{url('panel/teacher/users_pdf')}}" class="btn btn-success pull-right"><span class="fa fa-print"></span></a>
+                        <a href="{{url('panel/teacher/users_excel')}}" class="btn btn-success pull-right"><span class="fa fa-excel">Excel Export</span></a>
                     </div>
 
                     <div class="panel-body panel-body-table">
@@ -116,8 +119,11 @@
                                             <td >{{$item->id}}</td>
                                             @if (Auth::user()->is_admin == 1 || Auth::user()->is_admin == 2)
                                             <td>
-                                                @if (!empty($item->getCreatedBy))
+                                                {{-- @if (!empty($item->getCreatedBy))
                                                     {{ $item->getCreatedBy->name }}
+                                                @endif --}}
+                                                @if (!empty($item->getCreatedBy))
+                                                   {{ $item->getCreatedBy->name }}
                                                 @endif
                                             </td>
                                             @endif
@@ -148,8 +154,8 @@
                                             </td>
                                             <td >{{ date('d-m-y H:i A', strtotime($item->created_at)) }}</td>
                                             <td>
-                                                <a href="{{ url('panel/teacher/edit', $item->id) }}" class="btn btn-default btn-rounded btn-sm"><span class="fa fa-pencil"></span></a>
-                                                <a href="{{ url('panel/teacher/delete', $item->id) }}" onclick="return confirm('Are you sure do you want to delete ?');" class="btn btn-danger btn-rounded btn-sm" ><span class="fa fa-times"></span></a>
+                                                <a href="{{ url('panel/teacher/edit', $item->id) }}" class="btn btn-default  btn-sm"><span class="fa fa-pencil"></span></a>
+                                                <a href="{{ url('panel/teacher/delete', $item->id) }}" onclick="return confirm('Are you sure do you want to delete ?');" class="btn btn-danger  btn-sm" ><span class="fa fa-times"></span></a>
                                             </td>
                                         </tr> 
                                     @empty

@@ -35,6 +35,7 @@ class ClassTeacherModel extends Model
                               ->first();
    }
 
+
     //pour eviter la duplication des class lors de la modification en supprimant des anciennes données
     // important dans timeTable jQry pour rendre dynamique les matières en fonction des classes
     static public function getSelectedTeacher($class_id, $created_by_id)

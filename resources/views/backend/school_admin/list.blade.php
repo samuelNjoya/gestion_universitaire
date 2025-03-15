@@ -118,8 +118,8 @@
                                             </td>
                                             <td >{{ date('d-m-y H:i A', strtotime($item->created_at)) }}</td>
                                             <td>
-                                                <a href="{{ url('panel/school_admin/edit', $item->id) }}" class="btn btn-default btn-rounded btn-sm"><span class="fa fa-pencil"></span></a>
-                                                <a href="{{ url('panel/school_admin/delete', $item->id) }}" onclick="return confirm('Are you sure do you want to delete ?');" class="btn btn-danger btn-rounded btn-sm" ><span class="fa fa-times"></span></a>
+                                                <a href="{{ url('panel/school_admin/edit', $item->id) }}" class="btn btn-default  btn-sm"><span class="fa fa-pencil"></span></a>
+                                                <a href="{{ url('panel/school_admin/delete', $item->id) }}" onclick="return confirm('Are you sure do you want to delete ?');" class="btn btn-danger  btn-sm" ><span class="fa fa-times"></span></a>
                                             </td>
                                         </tr> 
                                     @empty

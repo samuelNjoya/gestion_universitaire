@@ -259,6 +259,29 @@ class User extends Authenticatable
         }
     }
 
+    
+   //compter le nombre d'enseignant total
+   static public function numberOfTeacher()
+   {
+       return self::where('is_admin', '=', 5)
+                    ->where('is_delete', '=', 0)
+                    ->count();                          
+                              
+   }
+
+     //compter le nombre d'etudiant total
+   static public function numberOfStudent()
+   {
+     return self::where('is_admin','=',6)->where('is_delete','=',0)->count();
+   }
+
+     //compter le nombre de departement
+     static public function numberOfDepartment()
+     {
+       return self::where('is_admin','=',3)->where('is_delete','=',0)->count();
+     }
+
+
     //fonction pour ajouter dynamiquement une image la retrouver dans le _sideBar
     public function getProfileLive(){
         if(!empty($this->profile_pic) && file_exists('upload/profile/' .$this->profile_pic)){
